@@ -1,0 +1,11 @@
+body {
+    background: linear-gradient(to right,
+        #ff0000, /* Màu đỏ */
+        #ff7f00, /* Màu cam */
+        #ffff00, /* Màu vàng */
+        #00ff00, /* Màu xanh lá cây */
+        #0000ff, /* Màu xanh dương */
+        #4b0082, /* Màu chàm */
+        #8a2be2  /* Màu tím */
+    );
+}
