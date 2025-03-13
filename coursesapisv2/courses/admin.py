@@ -2,7 +2,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django import forms
-from courses.models import Category, Course, Lesson, Tag
+from courses.models import Category, Course, Lesson, Tag, Comment, Like
 
 # Register your models here.
 class LessonTagInlineAdmin(admin.TabularInline):
@@ -51,4 +51,6 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, MyLessonAdmin)
+admin.site.register(Comment)
+admin.site.register(Like)
 admin.site.register(Tag, TagAdmin)

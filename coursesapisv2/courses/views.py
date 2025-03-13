@@ -1,8 +1,10 @@
-from rest_framework import viewsets, generics, status
+from argparse import Action
+
+from rest_framework import viewsets, generics, status, parsers
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from courses.models import Category, Course, Lesson, Tag
+from courses.models import Category, Course, Lesson, Tag, User
 from courses import serializers, paginators
 
 
@@ -44,3 +46,14 @@ class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
     queryset = Lesson.objects.prefetch_related('tags').filter(
         active=True)  # prefetch_related trong ManyToMany thi lay du lieu can co san tranh bi tang nhieu chi phi
     serializer_class = serializers.LessonDetailsSerializer
+
+    @action(methods=['get'], detail=True, url_path='comments')
+    def get_comment(self, request, pk):
+        comments = self.get_object().comment_set.select_related('user').filter(active=True)
+        return Response(serializers.CommentSerializers(comments, many=True).data, status=status.HTTP_200_OK)
+
+
+class UserViewSet(viewsets.ViewSet, generics.CreateAPIView):
+    queryset = User.objects.filter(is_active=True)
+    serializer_class = serializers.UserSerializers
+    parser_classes = [parsers.MultiPartParser, ]
