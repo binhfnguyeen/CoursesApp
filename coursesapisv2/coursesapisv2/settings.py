@@ -44,7 +44,16 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'drf_yasg',
+    'oauth2_provider',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
+
+OAUTH2_PROVIDER = { 'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore' }
 
 CKEDITOR_UPLOAD_PATH = "ckedittors/lessons/"
 
@@ -85,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coursedb',
-        'USER': 'heulwen',
-        'PASSWORD': 'nguyennguyen123',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': ''  # mặc định localhost
     }
 }
@@ -94,6 +103,7 @@ DATABASES = {
 AUTH_USER_MODEL = 'courses.User'
 
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 # Password validation
@@ -141,9 +151,9 @@ from cloudinary.utils import cloudinary_url
 
 # Configuration
 cloudinary.config(
-    cloud_name = "dwivkhh8t",
-    api_key = "925656835271691",
-    api_secret = "xggQhqIzVzwLbOJx05apmM4Od7U", # Click 'View API Keys' above to copy your API secret
+    cloud_name="dwivkhh8t",
+    api_key="925656835271691",
+    api_secret="xggQhqIzVzwLbOJx05apmM4Od7U",  # Click 'View API Keys' above to copy your API secret
     secure=True
 )
 
@@ -159,3 +169,6 @@ print(optimize_url)
 # Transform the image: auto-crop to square aspect_ratio
 auto_crop_url, _ = cloudinary_url("shoes", width=500, height=500, crop="auto", gravity="auto")
 print(auto_crop_url)
+
+CLIENT_ID = '0c7niHKPzgGJSg7hyH2oZHkVgm1eCWh0z1mWf4g8'
+CLIENT_SECRET = '1IuSKW5WwPqKyXSKRg9248hTgP2ahapiHpiZAxzuNfaCD6K1uP8JJaqwzIVybLpslgezDyjS5PuXoENyA4Pg3899AKEDVfcO0ZdBX0Fxu8mQKmJi0GYFr3ItO4TxFDZJ'
