@@ -54,3 +54,4 @@ admin.site.register(Lesson, MyLessonAdmin)
 admin.site.register(Comment)
 admin.site.register(Like)
 admin.site.register(Tag, TagAdmin)
+admin.site.site_header = "EcomSale Admin"

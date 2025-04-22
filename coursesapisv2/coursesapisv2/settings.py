@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'drf_yasg',
+    'jet',
 ]
 
 CKEDITOR_UPLOAD_PATH = "ckedittors/lessons/"
@@ -71,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -85,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coursedb',
-        'USER': 'heulwen',
+        'USER': 'root',
         'PASSWORD': 'nguyennguyen123',
         'HOST': ''  # mặc định localhost
     }
@@ -94,6 +97,7 @@ DATABASES = {
 AUTH_USER_MODEL = 'courses.User'
 
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 # Password validation
@@ -141,9 +145,9 @@ from cloudinary.utils import cloudinary_url
 
 # Configuration
 cloudinary.config(
-    cloud_name = "dwivkhh8t",
-    api_key = "925656835271691",
-    api_secret = "xggQhqIzVzwLbOJx05apmM4Od7U", # Click 'View API Keys' above to copy your API secret
+    cloud_name="dwivkhh8t",
+    api_key="925656835271691",
+    api_secret="xggQhqIzVzwLbOJx05apmM4Od7U",  # Click 'View API Keys' above to copy your API secret
     secure=True
 )
 
